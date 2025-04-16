@@ -21,7 +21,7 @@ class PostFactory extends Factory
             'user_id' => User::factory(),
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(3),
-            'image' => $this->faker->imageUrl(),
+            'image' => 'https://picsum.photos/seed/' . rand(1, 1000) . '/600/400',
             'body' => $this->faker->paragraph(10),
             'published_at' => $this->faker->dateTimeBetween('-1 week', '+1 week'),
             'featured' => $this->faker->boolean(10),

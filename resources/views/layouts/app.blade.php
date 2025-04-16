@@ -22,7 +22,9 @@
 
     @include('layouts.partials.header')
 
-    <main class="container mx-auto px-5 flex flex-grow">
+    @yield('hero')
+
+    <main class="w-full container mx-auto px-5 flex flex-grow">
         {{ $slot }}
     </main>
 
