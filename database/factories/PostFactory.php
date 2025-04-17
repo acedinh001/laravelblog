@@ -24,7 +24,7 @@ class PostFactory extends Factory
             'image' => 'https://picsum.photos/seed/' . rand(1, 1000) . '/600/400',
             'body' => $this->faker->paragraph(10),
             'published_at' => $this->faker->dateTimeBetween('-1 week', '+1 week'),
-            'featured' => $this->faker->boolean(10),
+            'featured' => $this->faker->boolean(50),
         ];
     }
 }
