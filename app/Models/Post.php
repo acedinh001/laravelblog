@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use PharIo\Manifest\Author;
 
@@ -35,6 +36,12 @@ class Post extends Model
         return Str::limit(strip_tags($this->body), 100);
     }
 
+    public function getImageUrl()
+    {
+        $isUrl = str_contains($this->image, 'http');
+        return $isUrl ? $this->image : Storage::url($this->image);
+    }
+
     public function readTime()
     {
         $wordPerMinute = 250;
@@ -50,6 +57,14 @@ class Post extends Model
     public function scopeFeatured($query) {
         return $query->where('featured', true);
     }
+
+    public function scopeWithCategory($query, $category)
+    {
+        return $query->whereHas('categories', function ($query) use ($category) {
+            $query->where('slug', 'like', '%' . $category . '%');
+        });
+    }
+
     protected $casts = [
         'published_at' => 'datetime',
     ];
