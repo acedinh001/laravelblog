@@ -48,7 +48,7 @@ class PostList extends Component
 
     public function getSearchCategory()
     {
-        return Category::where('slug', 'like', '%' . $this->category . '%')->first();
+        return Category::where('slug', $this->category)->first();
     }
 
     #[On('search-posts')]

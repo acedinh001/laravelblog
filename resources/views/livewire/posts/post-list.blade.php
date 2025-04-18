@@ -4,13 +4,10 @@
             @if($this->category or $this->search)
                 <button wire:click="clearFilter" class="mr-5 text-gray-500">x</button>
             @endif
-            @php
-                $category = $this->getSearchCategory()
-            @endphp
-            @if ($category)
-                <x-badge wire:navigate href="{{ route('blog', ['category' => $category->slug]) }}"
-                         :text_color="$category->text_color" :bg_color="$category->bg_color">{{
-                    $category->title
+            @if ($this->getSearchCategory())
+                <x-badge wire:navigate href="{{ route('blog', ['category' => $this->getSearchCategory()->slug]) }}"
+                         :text_color="$this->getSearchCategory()->text_color" :bg_color="$this->getSearchCategory()->bg_color">{{
+                    $this->getSearchCategory()->title
                     }}</x-badge>
             @endif
             @if ($this->search)
