@@ -35,8 +35,8 @@ class CategoryResource extends Resource
                         $set('slug', Str::slug($state));
                     }),
                 TextInput::make('slug')->required()->minLength(1),
-                ColorPicker::make('text_color'),
-                ColorPicker::make('bg_color')
+                TextInput::make('text_color'),
+                TextInput::make('bg_color')
             ]);
     }
 

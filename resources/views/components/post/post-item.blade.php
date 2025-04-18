@@ -27,6 +27,16 @@
             <p class="mt-2 text-base text-gray-700 font-light">
                 {{ $post->excerpt() }}
             </p>
+            <div class="mt-5 flex gap-5">
+                @if(!empty($post->categories))
+                    @foreach($post->categories as $category)
+                        <x-badge wire:navigate href="{{ route('blog', ['category' => $category->slug]) }}"
+                                 :text_color="$category->text_color" :bg_color="$category->bg_color">{{
+                        $category->title
+                        }}</x-badge>
+                    @endforeach
+                @endif
+            </div>
             <div class="article-actions-bar mt-6 flex items-center justify-between">
                 <div class="flex items-center space-x-4">
                     <span class="text-gray-500 text-sm">{{ $post->readTime() }} min read</span>
@@ -38,9 +48,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                         </svg>
-                        <span class="text-gray-600 ml-2">
-                                                    1
-                                                </span>
                     </a>
                 </div>
             </div>

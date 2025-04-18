@@ -40,10 +40,22 @@ class PostList extends Component
         $this->sort = $sort;
     }
 
+    public function clearFilter()
+    {
+        $this->search = '';
+        $this->category = '';
+    }
+
+    public function getSearchCategory()
+    {
+        return Category::where('slug', 'like', '%' . $this->category . '%')->first();
+    }
+
     #[On('search-posts')]
     public function updatedSearch($search)
     {
         $this->search = $search;
+        $this->resetPage();
     }
 
     public function render()
