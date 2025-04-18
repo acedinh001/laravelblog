@@ -31,6 +31,12 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'like_post')
+            ->withTimestamps();
+    }
+
     public function excerpt()
     {
         return Str::limit(strip_tags($this->body), 100);

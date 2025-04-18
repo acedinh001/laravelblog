@@ -5,6 +5,7 @@
         'blue' => 'text-blue-500',
         'green' => 'text-green-500',
         'red' => 'text-red-500',
+        'yellow' => 'text-yellow-500',
         default => 'text-gray-500'
     };
 
@@ -12,6 +13,7 @@
         'blue' => 'bg-blue-100',
         'green' => 'bg-green-100',
         'red' => 'bg-red-100',
+        'yellow' => 'bg-yellow-100',
         default => 'bg-gray-100'
     }
 @endphp

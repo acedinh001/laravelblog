@@ -37,6 +37,7 @@ class PostList extends Component
 
     public function updateSort($sort)
     {
+        $this->resetPage($sort);
         $this->sort = $sort;
     }
 
