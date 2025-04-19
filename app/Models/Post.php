@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use PharIo\Manifest\Author;
@@ -37,6 +38,10 @@ class Post extends Model
             ->withTimestamps();
     }
 
+    public function hasLiked()
+    {
+        return $this->likes()->where('user_id', Auth::id())->exists();
+    }
     public function excerpt()
     {
         return Str::limit(strip_tags($this->body), 100);

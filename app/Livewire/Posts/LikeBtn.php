@@ -4,10 +4,12 @@ namespace App\Livewire\Posts;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class LikeBtn extends Component
 {
+    #[Reactive]
     public Post $post;
 
     public function toggleLike()
@@ -15,12 +17,13 @@ class LikeBtn extends Component
         if (!Auth::check()) {
             return $this->redirect('/login', navigate: true);
         }
-        $hasLiked = $this->post->likes()->where('user_id', Auth::id())->exists();
+
+        $hasLiked = $this->post->hasLiked();
 
         if ($hasLiked) {
-            $this->post->likes()->detach(Auth::id());
+            return $this->post->likes()->detach(Auth::id());
         }
-        $this->post->likes()->attach(Auth::id());
+        return $this->post->likes()->attach(Auth::id());
     }
 
     public function render()
