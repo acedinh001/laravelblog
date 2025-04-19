@@ -13,4 +13,10 @@ class PostController extends Controller
             'posts' => Post::query()->take(3)->get()
         ]);
     }
+
+    public function show(Post $post) {
+        return view('posts.show', [
+            'post' => $post
+        ]);
+    }
 }

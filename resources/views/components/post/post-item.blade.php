@@ -2,7 +2,7 @@
 <article class="[&:not(:last-child)]:border-b border-gray-100 pb-10">
     <div class="article-body grid grid-cols-12 gap-3 mt-5 items-start">
         <div class="article-thumbnail col-span-4 flex items-center">
-            <a href="" >
+            <a wire:navigate href="{{ route('blog.show', $post->slug) }}" >
                 <img class="mw-100 mx-auto rounded-xl"
                      src="{{ $post->getImageUrl() }}"
                      alt="thumbnail">
@@ -17,7 +17,7 @@
                 <span class="text-gray-500 text-xs">{{ $post->published_at->diffForHumans() }}</span>
             </div>
             <h2 class="text-xl font-bold text-gray-900">
-                <a href="#" >
+                <a wire:navigate href="{{ route('blog.show', $post->slug) }}" >
                     {{ $post->title }}
                 </a>
             </h2>
@@ -40,7 +40,7 @@
                     <span class="text-gray-500 text-sm">{{ $post->readTime() }} min read</span>
                 </div>
                 <div>
-                    <livewire:posts.like-btn :post="$post" wire:key="{{ $post->id }}"/>
+                    <livewire:posts.like-btn :post="$post" :key="$post->id"/>
                 </div>
             </div>
         </div>
