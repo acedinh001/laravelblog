@@ -38,6 +38,11 @@ class Post extends Model
             ->withTimestamps();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function hasLiked()
     {
         return $this->likes()->where('user_id', Auth::id())->exists();
