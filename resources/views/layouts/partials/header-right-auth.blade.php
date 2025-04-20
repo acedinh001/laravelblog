@@ -1,5 +1,8 @@
 @auth()
     <!-- Settings Dropdown -->
+    @can('canAdmin', auth()->user())
+        <a href="{{ route('filament.admin.auth.login') }}" class="text-sm text-gray-500">Admin</a>
+    @endcan
     <div class="ms-3 relative">
         <x-dropdown align="right" width="48">
             <x-slot name="trigger">
