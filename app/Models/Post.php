@@ -82,6 +82,12 @@ class Post extends Model
         });
     }
 
+    public function scopePopular($query)
+    {
+        return  $query->withCount('likes')
+            ->orderBy('likes_count', 'desc');
+    }
+
     protected $casts = [
         'published_at' => 'datetime',
     ];
