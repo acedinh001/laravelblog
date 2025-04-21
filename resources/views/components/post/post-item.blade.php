@@ -37,7 +37,7 @@
                     <span class="text-gray-500 text-sm">{{ $post->readTime() }} min read</span>
                 </div>
                 <div>
-                    <livewire:posts.like-btn :post="$post" :key="$post->id"/>
+                    <livewire:posts.like-btn :post="$post" :key="'like-' . $post->id"/>
                 </div>
             </div>
         </div>
