@@ -30,6 +30,7 @@ class PostList extends Component
     {
         return Post::query()
             ->where('title', 'like', '%' . $this->search . '%')
+            ->with('author', 'categories')
             ->when($this->category, function ($query) {
                 $query->withCategory($this->category);
             })
